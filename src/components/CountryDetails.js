@@ -2,16 +2,16 @@ import React from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Button from 'react-bootstrap/Button';
 
-function CountryDetails() {
+function CountryDetails( { darkMode }) {
   return (
-    <div className="country-details">
-        <Button className="back btn-light d-flex align-items-center justify-content-center shadow mt-2 rounded border-0 gap-2 fw-bold mx-2">
+    <div className={`country-details min-vh-100 pt-2 ${darkMode ? "bg-dark" : ""} `}>
+        <Button className="back btn-light d-flex align-items-center justify-content-center shadow rounded border-0 gap-2 fw-bold mx-2">
             <ArrowBackIcon />
             <p className="mt-3">Back</p>
         </Button>
 
         <div className="d-flex align-item-center justify-content-center">
-            <div className="img-container card mx-2 mt-2 w-75 h-100 mb-4">
+            <div className={`img-container card mx-2 mt-2 w-75 h-100 mb-4 ${darkMode ? "bg-secondary text-light" : ""}`}>
                 <img src="https://flagcdn.com/as.svg" alt="" className="card-img" />
                 <div className="card-body">
                     <h5 className="card-title mx-2">Name</h5>

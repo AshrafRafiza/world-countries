@@ -12,9 +12,15 @@ import CountryDetails from './components/CountryDetails';
 
 function App() {
 
+  const [darkMode, setDarkMode] = useState(false);
   const [tableViewActive, setTableViewActive] =useState(false)
 
   const label = { inputProps: { 'aria-label': 'Table View' } };
+
+  // change Mode
+  const switchMode = () => {
+    setDarkMode((prevState) => !prevState)
+  };
 
   // change tableView state to view table
   const tableViewChange = (e) => {
@@ -23,14 +29,14 @@ function App() {
   };
   return (
     <div className="App bg-light min-vh-100">
-      <Header />
+      <Header onClick={switchMode} darkMode={darkMode} tableViewActive={tableViewActive} />
 
       <Routes>
         {/* main page */}
         <Route
           path="/"
           element={
-            <div className="app-body">
+            <div className={`app-body vh-100 ${darkMode ? 'bg-dark' : ''}`}>
               <div className="inputs d-flex align-items=center justify-content-between mx-2">
 
                 {/* search section */}
@@ -39,14 +45,19 @@ function App() {
                       <span className="input-group-text" id="search-addon">
                         <SearchIcon />
                       </span>
-                      <input type="search" className="form-control" placeholder="Search country" aria-label="Search" aria-describedby="search-addon" />
+                      <input 
+                        type="search" 
+                        className={`form-control ${darkMode ? "search-darkMode text-light" : ""}`}
+                        placeholder="Search country" 
+                        aria-label="Search" 
+                        aria-describedby="search-addon" />
                   </div>
                 </div>
                 <div className="right-inputs d-flex justify-content-between mt-2">
 
                   {/* Select region section */}
                   <div className="select-region mx-2">
-                    <select className="form-select">
+                    <select className={`form-select ${darkMode ? "bg-dark text-light" : ""}`}>
                         <option value="All">All</option>
                         <option value="Africa">Africa</option>
                         <option value="Americas">Americas</option>
@@ -58,9 +69,15 @@ function App() {
 
                   {/* Table view switch section */}
                   <div className="change-view d-flex">
-                    <Switch {...label} label="Table View" checked={tableViewActive} onChange={tableViewChange} />
+                    <Switch {...label} 
+                      label="Table View" 
+                      checked={tableViewActive} 
+                      color={darkMode ? "warning" : "default"}
+                      onChange={tableViewChange}
+                      
+                    />
                     <div className="mt-2">
-                      <TableViewIcon />
+                      <TableViewIcon className={`${darkMode ? 'text-light' : ""}`} />
                     </div>
                   </div>
                 </div>
@@ -69,7 +86,7 @@ function App() {
 
               {/* Country card section */}
               <div className="countries">
-                {tableViewActive ? <p>Table View</p> : <Country />}
+                {tableViewActive ? <p>Table View</p> : <Country darkMode={darkMode} />}
                 
               </div>
           </div>
@@ -78,7 +95,7 @@ function App() {
         {/* Country Details page */}
         <Route 
           path="/details" 
-          element={<CountryDetails />}/>
+          element={<CountryDetails darkMode={darkMode} />}/>
           
       </Routes>
     </div>

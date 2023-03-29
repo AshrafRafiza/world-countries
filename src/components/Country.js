@@ -1,13 +1,13 @@
 import React from 'react'
 
-function Country() {
+function Country({ darkMode}) {
   return (
     <div className="container">
         <div className=" country row">
             <div className="col-12 col-md-6 col-lg-4 mt-5">
-                <div className="card">
+                <div className={`card ${darkMode ? "bg-secondary" : ""}`}>
                     <img className="card-img-top" src="https://flagcdn.com/as.svg" alt=""/>
-                    <div className="card-body">
+                    <div className={`card-body ${darkMode ? "text-light" : ""}`}>
                         <h5 className="name card-title">Name</h5>
                         <p>Population: 
                             <span>Test</span>
