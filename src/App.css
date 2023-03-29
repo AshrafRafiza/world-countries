@@ -1,0 +1,13 @@
+.header {
+  padding: 15px;
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.switch-mode {
+  gap: 12px;
+  cursor: pointer;
+}
