@@ -21,6 +21,7 @@ function App() {
   const [error, setError] = useState()
 
   const countriesInputRef = useRef();
+  const regionRef = useRef();
 
   const label = { inputProps: { 'aria-label': 'Table View' } };
 
@@ -37,8 +38,7 @@ function App() {
 
   // search country
   const searchCountries = () => {
-    const searchValue = countriesInputRef.current.value;
-    console.log(searchValue.trim())
+    const searchValue =countriesInputRef.current.value;
 
     if (searchValue.trim()) {
       axios.get(`${apiURL}/name/${searchValue}`)
@@ -52,6 +52,35 @@ function App() {
         })
     }
   };
+
+  // select countries by region
+  const selectRegion = () => {
+    const selectValue = regionRef.current.value;
+
+    if (selectValue.trim()){
+      if (selectValue === "All") {
+        axios.get(`${apiURL}/all`)
+          .then(response => {
+            const countryData = response.data
+            setCountries(countryData)
+          })
+          .catch(error => {
+            console.log(error)
+            setError(error)
+          })
+      } else {
+        axios.get(`${apiURL}/region/${selectValue}`)
+          .then(response => {
+            const countryData = response.data
+            setCountries(countryData)
+          })
+          .catch(error => {
+            console.log(error)
+            setError(error)
+          })
+      }
+    }
+  }
   
   useEffect(() => {
     //fetch all countries
@@ -87,7 +116,7 @@ function App() {
                       <input 
                         type="search" 
                         className={`form-control ${darkMode ? "search-darkMode text-light" : ""}`}
-                        placeholder="Search country" 
+                        placeholder="Search country"
                         aria-label="Search" 
                         aria-describedby="search-addon"
                         ref={countriesInputRef}
@@ -98,7 +127,11 @@ function App() {
 
                   {/* Select region section */}
                   <div className="select-region mx-2">
-                    <select className={`form-select ${darkMode ? "bg-dark text-light" : ""}`}>
+                    <select 
+                      className={`form-select ${darkMode ? "bg-dark text-light" : ""}`}
+                      ref={regionRef}
+                      onChange={selectRegion}
+                    >
                         <option value="All">All</option>
                         <option value="Africa">Africa</option>
                         <option value="Americas">Americas</option>
