@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
@@ -20,6 +20,8 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [error, setError] = useState()
 
+  const countriesInputRef = useRef();
+
   const label = { inputProps: { 'aria-label': 'Table View' } };
 
   // change Mode
@@ -31,6 +33,24 @@ function App() {
   const tableViewChange = (e) => {
     setTableViewActive(!tableViewActive)
     
+  };
+
+  // search country
+  const searchCountries = () => {
+    const searchValue = countriesInputRef.current.value;
+    console.log(searchValue.trim())
+
+    if (searchValue.trim()) {
+      axios.get(`${apiURL}/name/${searchValue}`)
+        .then(response => {
+          const countryData = response.data
+          setCountries(countryData)
+        })
+        .catch(error => {
+          console.log(error)
+          setError(error)
+        })
+    }
   };
   
   useEffect(() => {
@@ -45,9 +65,6 @@ function App() {
             setError(error)
         })
   },[]);
-
-  console.log(countries)
-
 
   return (
     <div className="App bg-light min-vh-100">
@@ -72,7 +89,9 @@ function App() {
                         className={`form-control ${darkMode ? "search-darkMode text-light" : ""}`}
                         placeholder="Search country" 
                         aria-label="Search" 
-                        aria-describedby="search-addon" />
+                        aria-describedby="search-addon"
+                        ref={countriesInputRef}
+                        onChange={searchCountries} />
                   </div>
                 </div>
                 <div className="right-inputs d-flex justify-content-between mt-2">
@@ -107,8 +126,8 @@ function App() {
               
 
               {/* Country card section */}
-              <div className="countries">
-                {tableViewActive ? <CountryTable /> : <Country darkMode={darkMode} countries={countries} error={error} />}
+              <div className={`countries ${darkMode ? "bg-dark" : ""}`}>
+                {tableViewActive ? <CountryTable darkMode={darkMode} countries={countries} error={error} /> : <Country darkMode={darkMode} countries={countries} error={error} />}
                 
               </div>
           </div>

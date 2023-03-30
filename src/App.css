@@ -36,3 +36,7 @@
 .country-flag {
   object-fit: cover;
 }
+
+.country-table {
+  overflow-x: scroll;
+}
