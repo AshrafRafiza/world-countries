@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import axios from 'axios';
 import './App.css';
 // import Button from 'react-bootstrap/Button';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,11 +10,15 @@ import SearchIcon from '@mui/icons-material/Search';
 import Switch from '@mui/material/Switch';
 import TableViewIcon from '@mui/icons-material/TableView';
 import CountryDetails from './components/CountryDetails';
+import { apiURL } from './components/util/api';
+import CountryTable from './components/CountryTable';
 
 function App() {
 
   const [darkMode, setDarkMode] = useState(false);
   const [tableViewActive, setTableViewActive] =useState(false)
+  const [countries, setCountries] = useState([]);
+  const [error, setError] = useState()
 
   const label = { inputProps: { 'aria-label': 'Table View' } };
 
@@ -27,6 +32,23 @@ function App() {
     setTableViewActive(!tableViewActive)
     
   };
+  
+  useEffect(() => {
+    //fetch all countries
+    axios.get(`${apiURL}/all`)
+        .then(response => {
+            const countryData = response.data
+            setCountries(countryData)
+        })
+        .catch(error => {
+            console.log(error)
+            setError(error)
+        })
+  },[]);
+
+  console.log(countries)
+
+
   return (
     <div className="App bg-light min-vh-100">
       <Header onClick={switchMode} darkMode={darkMode} tableViewActive={tableViewActive} />
@@ -86,7 +108,7 @@ function App() {
 
               {/* Country card section */}
               <div className="countries">
-                {tableViewActive ? <p>Table View</p> : <Country darkMode={darkMode} />}
+                {tableViewActive ? <CountryTable /> : <Country darkMode={darkMode} countries={countries} error={error} />}
                 
               </div>
           </div>

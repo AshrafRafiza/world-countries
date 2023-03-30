@@ -32,3 +32,7 @@
 .countries {
   padding: 15px;
 }
+
+.country-flag {
+  object-fit: cover;
+}
