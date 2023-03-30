@@ -88,6 +88,9 @@ function App() {
   const showDetails = (countryCode) => {
     navigate(`/${countryCode}`);
   }
+
+  // const currency = countries[0].currencies[Object.keys(countries[0].currencies)].name
+  // console.log(currency)
   
   useEffect(() => {
     //fetch all countries
@@ -187,8 +190,6 @@ function App() {
                   }
                   </div>
                 </div>
-                
-                
               </div>
           </div>
         } />
