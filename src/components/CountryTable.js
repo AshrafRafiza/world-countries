@@ -17,6 +17,7 @@ function CountryTable({ darkMode, countries, error, showDetails }) {
                 <th scope="col">Capital</th>
                 <th scope="col">Population</th>
                 <th scope="col">Region</th>
+                <th scope="col">Currency</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,6 +50,20 @@ function CountryTable({ darkMode, countries, error, showDetails }) {
                                 <td>
                                     <div>
                                         {country.region}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        {
+                                            (!country.currencies) ? 
+                                                "Currency not available" : (Object.values(country.currencies).map(({name, symbol}) =>
+                                                    <div className="d-flex" key={name}>
+                                                        <p className="mx-2">{symbol}</p>
+                                                        <p>{name}</p>
+                                                    </div>
+                                                    
+                                                ))
+                                        }
                                     </div>
                                 </td>
                             </tr>
