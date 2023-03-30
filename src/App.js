@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import './App.css';
 // import Button from 'react-bootstrap/Button';
@@ -22,6 +23,7 @@ function App() {
 
   const countriesInputRef = useRef();
   const regionRef = useRef();
+  const navigate = useNavigate();
 
   const label = { inputProps: { 'aria-label': 'Table View' } };
 
@@ -80,6 +82,11 @@ function App() {
           })
       }
     }
+  }
+
+  // supply country code to country details page
+  const showDetails = (countryCode) => {
+    navigate(`/${countryCode}`);
   }
   
   useEffect(() => {
@@ -160,7 +167,27 @@ function App() {
 
               {/* Country card section */}
               <div className={`countries ${darkMode ? "bg-dark" : ""}`}>
-                {tableViewActive ? <CountryTable darkMode={darkMode} countries={countries} error={error} /> : <Country darkMode={darkMode} countries={countries} error={error} />}
+                <div  className="container">
+                  <div className=" country row">
+                    {
+                    tableViewActive ? (<CountryTable darkMode={darkMode} countries={countries} error={error} showDetails={showDetails} />) :
+                    (!error ? ((countries.map((country, index) => (
+                      <Country
+                        darkMode={darkMode}
+                        key={index}
+                        countryCode={country.cca3}
+                        name={country.name.common}
+                        capital={country.capital}
+                        population={country.population}
+                        region={country.region}
+                        flag={country.flags.png}
+                        showDetails={showDetails}
+                      />
+                    )))) : "Country not found")
+                  }
+                  </div>
+                </div>
+                
                 
               </div>
           </div>
@@ -168,8 +195,8 @@ function App() {
 
         {/* Country Details page */}
         <Route 
-          path="/details" 
-          element={<CountryDetails darkMode={darkMode} />}/>
+          path="/:countryCode" 
+          element={<CountryDetails darkMode={darkMode} countries={countries} />}/>
           
       </Routes>
     </div>

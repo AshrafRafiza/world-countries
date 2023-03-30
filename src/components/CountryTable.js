@@ -1,6 +1,12 @@
 import React from 'react'
 
-function CountryTable({ darkMode, countries, error }) {
+function CountryTable({ darkMode, countries, error, showDetails }) {
+
+    const showDetailsHandler = (e) => {
+        const countryCode = e
+        showDetails(countryCode)
+    }
+
   return (
     <div className="country-table">
         <table className={`table table-responsive ${darkMode ? "text-light" : ""}`}>
@@ -20,8 +26,9 @@ function CountryTable({ darkMode, countries, error }) {
                             <tr key={index}>
                                 <td>
                                     <div className="img img-responsive">
-                                        <img className="img img-fluid" src={country.flags.png} alt="" />
+                                        <img className="img img-fluid" src={country.flags.png} alt={country.cca3} onClick={(e) => showDetailsHandler(e.target.alt)}/>
                                     </div>
+                                    
                                     
                                 </td>
                                 <td>
