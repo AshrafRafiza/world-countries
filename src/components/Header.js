@@ -1,5 +1,6 @@
 import React from 'react';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 
 function Header({ onClick, darkMode, tableViewActive, detailViewActive }) {
   return (
@@ -13,8 +14,7 @@ function Header({ onClick, darkMode, tableViewActive, detailViewActive }) {
               }
             </h2>
             <div className="switch-mode d-flex align-items-center justify-content-between user-select-none" onClick={onClick}>
-                <DarkModeIcon />
-                <h3>Dark Mode</h3>
+              {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
             </div>
         </div>
     </div>
