@@ -3,6 +3,10 @@
   --dark-mode-bg: hsl(207, 26%, 17%);
 }
 
+.App {
+  font-family: monospace;
+}
+
 .header {
   padding: 15px;
 }
