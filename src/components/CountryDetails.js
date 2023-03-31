@@ -3,7 +3,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Button from 'react-bootstrap/Button';
 import { useParams, useNavigate } from 'react-router';
 
-function CountryDetails( { darkMode, countries }) {
+function CountryDetails( { darkMode, countries, setDetailViewActive }) {
 
     const params = useParams()
     const navigate = useNavigate()
@@ -31,13 +31,12 @@ function CountryDetails( { darkMode, countries }) {
             currencies = Object.values(country.currencies).map(({name}) => name).join(', ')
             languages = Object.values(country.languages).join(', ')
             borders = country.borders
-
-            console.log(country)
         }
     })
 
-    //go back to countries listing
+    //go back to countries listing and set detail view as false
     const goBack = () => {
+        setDetailViewActive(false)
         navigate("/")
     }
 

@@ -17,7 +17,8 @@ import CountryTable from './components/CountryTable';
 function App() {
 
   const [darkMode, setDarkMode] = useState(false);
-  const [tableViewActive, setTableViewActive] =useState(false)
+  const [tableViewActive, setTableViewActive] = useState(false)
+  const [detailViewActive, setDetailViewActive] = useState(false)
   const [countries, setCountries] = useState([]);
   const [error, setError] = useState()
 
@@ -84,13 +85,11 @@ function App() {
     }
   }
 
-  // supply country code to country details page
+  // supply country code to country details page and set detail view as true
   const showDetails = (countryCode) => {
+    setDetailViewActive(true)
     navigate(`/${countryCode}`);
   }
-
-  // const currency = countries[0].currencies[Object.keys(countries[0].currencies)].name
-  // console.log(currency)
   
   useEffect(() => {
     //fetch all countries
@@ -107,7 +106,7 @@ function App() {
 
   return (
     <div className="App bg-light min-vh-100">
-      <Header onClick={switchMode} darkMode={darkMode} tableViewActive={tableViewActive} />
+      <Header onClick={switchMode} darkMode={darkMode} tableViewActive={tableViewActive} detailViewActive={detailViewActive} />
 
       <Routes>
         {/* main page */}
@@ -197,7 +196,7 @@ function App() {
         {/* Country Details page */}
         <Route 
           path="/:countryCode" 
-          element={<CountryDetails darkMode={darkMode} countries={countries} />}/>
+          element={<CountryDetails darkMode={darkMode} countries={countries} setDetailViewActive={setDetailViewActive}/>}/>
           
       </Routes>
     </div>

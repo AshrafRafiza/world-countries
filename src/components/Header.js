@@ -1,11 +1,17 @@
 import React from 'react';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 
-function Header({ onClick, darkMode, tableViewActive }) {
+function Header({ onClick, darkMode, tableViewActive, detailViewActive }) {
   return (
     <div className={`header ${darkMode ? "header-darkMode" : "bg-light"} shadow`}>
         <div className="header-container d-flex align-items-center justify-content-between">
-            <h2>{tableViewActive ? "Countries Table View" : "Countries Card View"}</h2>
+            <h2>
+              {
+                !detailViewActive ?
+                (tableViewActive ? "Table View" : "Card View") :
+                "Detail View"
+              }
+            </h2>
             <div className="switch-mode d-flex align-items-center justify-content-between user-select-none" onClick={onClick}>
                 <DarkModeIcon />
                 <h3>Dark Mode</h3>
