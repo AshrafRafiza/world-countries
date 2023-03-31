@@ -185,7 +185,12 @@ function App() {
                         flag={country.flags.png}
                         showDetails={showDetails}
                       />
-                    )))) : "Country not found")
+                    )))) 
+                    : 
+                    <div className={`${darkMode ? "text-light" : ""}`}>
+                      <p>Country not found</p>
+                    </div>
+                    )
                   }
                   </div>
                 </div>

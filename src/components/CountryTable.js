@@ -70,10 +70,12 @@ function CountryTable({ darkMode, countries, error, showDetails }) {
                             </tr>
                             
                         ))
-                    ) : (<tr>Not found</tr>)
+                    ) : 
+                    <></>
                 }
             </tbody>
         </table>
+        {error ? <p className={`${darkMode ? "text-light" : ""}`}>Country not found</p> : <></>}
     </div>
   )
 }
