@@ -19,6 +19,7 @@ function CountryDetails( { darkMode, countries, setDetailViewActive }) {
     let currencies;
     let borders;
 
+    //loop through countries until find the country with same code and get the details
     countries.forEach(country => {
         if (country.cca3 === params.countryCode) {
             name = country.name.common

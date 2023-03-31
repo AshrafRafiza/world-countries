@@ -56,7 +56,7 @@ function App() {
     }
   };
 
-  // select countries by region
+  // select countries by region, if All will fetch from All API, other will fetch from region API
   const selectRegion = () => {
     const selectValue = regionRef.current.value;
 

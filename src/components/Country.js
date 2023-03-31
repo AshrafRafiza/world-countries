@@ -2,6 +2,7 @@ import React from 'react'
 
 function Country({ darkMode, index, name, capital, population, region, flag, error, showDetails, countryCode }) {
 
+    // pass the country code to app when user click a country card
     const showDetailsHandler = () => {
         showDetails(countryCode)
     }

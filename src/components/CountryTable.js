@@ -2,6 +2,7 @@ import React from 'react'
 
 function CountryTable({ darkMode, countries, error, showDetails }) {
 
+    //pass country code to app when user click a country flag
     const showDetailsHandler = (e) => {
         const countryCode = e
         showDetails(countryCode)
