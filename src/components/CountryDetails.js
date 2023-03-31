@@ -76,21 +76,11 @@ function CountryDetails( { darkMode, countries, setDetailViewActive }) {
                                     Capital:{" "} <span className="">{capital}</span>
                                 </p>
                                 <p>
-                                    Top-level Domain:{" "} <span className="">Test</span>
-                                </p>
-                                <p>
                                     Currency:{" "} <span className="">{currencies}</span>
                                 </p>
                                 <p>
                                     Languages:{" "} <span className="">{languages}</span>
                                 </p>
-                                {/* <p>
-                                    Languages:{" "} {
-                                        Object.entries(languages).map((key, val) =>
-                                            <span key={key}>{val}</span>
-                                        )
-                                    }
-                                </p> */}
                             </div>
                         </div>
                         <div className="row">
