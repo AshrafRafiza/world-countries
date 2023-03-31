@@ -50,13 +50,11 @@ function CountryDetails( { darkMode, countries }) {
 
         <div className="d-flex align-item-center justify-content-center">
             <div className={`img-container card mx-2 mt-2 w-75 h-100 mb-4 ${darkMode ? "bg-secondary text-light" : ""}`}>
-                {/* <img src={flagImg} alt="" className="card-img w-50 h-50" /> */}
                 <div className="card-body">
-                    {/* <h5 className="card-title mx-2">Name</h5> */}
                     <div className="container">
                         <div className="row">
                             <div className="col-12 col-md-4">
-                                <img src={flagImg} alt="" className="card-img w-50 h-50" />
+                                <img src={flagImg} alt="" className="card-img" />
                             </div>
                             <div className="col-12 col-md-4">
                                 <h5>{name}</h5>
@@ -105,18 +103,16 @@ function CountryDetails( { darkMode, countries }) {
                                                 {
                                                     borders.map((border, index) =>(
                                                         <div className="d-flex align-item-center justify-content-between mx-2" key={index}>
-                                                            <div className="">
-                                                                <p>{border}</p>
+                                                            <div className="shadow px-2 text-center rounded">
+                                                                <p className="mb-0">{border}</p>
                                                             </div>
                                                         </div>
                                                     ))
                                                 }
                                             </div>
                                         </>
-                                        
                                     ) : ""
                                 }
-                                
                             </div>
                         </div>
                     </div>
