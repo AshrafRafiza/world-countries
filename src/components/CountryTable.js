@@ -9,6 +9,7 @@ function CountryTable({ darkMode, countries, error, showDetails }) {
 
   return (
     <div className="country-table">
+        <p className={`countrytable-instruction ${darkMode ? "text-light" : ""}`}>Click on the flag to see details</p>
         <table className={`table table-responsive ${darkMode ? "text-light" : ""}`}>
             <thead>
                 <tr>
@@ -27,7 +28,7 @@ function CountryTable({ darkMode, countries, error, showDetails }) {
                             <tr key={index}>
                                 <td>
                                     <div className="img img-responsive">
-                                        <img className="img img-fluid" src={country.flags.png} alt={country.cca3} onClick={(e) => showDetailsHandler(e.target.alt)}/>
+                                        <img className="img img-fluid table-img" src={country.flags.png} alt={country.cca3} onClick={(e) => showDetailsHandler(e.target.alt)}/>
                                     </div>
                                     
                                     
