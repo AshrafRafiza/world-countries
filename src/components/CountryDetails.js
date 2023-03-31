@@ -90,19 +90,22 @@ function CountryDetails( { darkMode, countries, setDetailViewActive }) {
                                     borders ? (
                                         <>
                                             <h5>Borders</h5>
-                                            <div className="d-inline-flex justify-content-space">
-                                                {
-                                                    borders.map((border, index) =>(
-                                                        <div className="d-flex align-item-center justify-content-between mx-2" key={index}>
-                                                            <div className="shadow px-2 text-center rounded">
-                                                                <p className="mb-0">{border}</p>
+                                            <div className="container">
+                                                <div className="row">
+                                                    {
+                                                        borders.map((border, index) =>(
+                                                            <div className="col-4 col-md-1" key={index}>
+                                                                <div className="shadow px-2 text-center rounded">
+                                                                    <p className="mb-0">{border}</p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    ))
-                                                }
+                                                        ))
+                                                    }
+                                                </div>
+                                                
                                             </div>
                                         </>
-                                    ) : ""
+                                    ) : <></>
                                 }
                             </div>
                         </div>
