@@ -43,11 +43,12 @@ function CountryDetails( { darkMode, countries }) {
 
   return (
     <div className={`country-details min-vh-100 pt-2 ${darkMode ? "bg-dark" : ""} `}>
-        <Button className="back btn-light d-flex align-items-center justify-content-center shadow rounded border-0 gap-2 fw-bold mx-2" onClick={goBack}>
+        {/* back button */}
+        <Button className="back btn-light d-flex align-items-center justify-content-center shadow rounded border-0 fw-bold mx-3" onClick={goBack}>
             <ArrowBackIcon />
-            <p className="mt-3">Back</p>
         </Button>
 
+        {/* Details card section */}
         <div className="d-flex align-item-center justify-content-center">
             <div className={`img-container card mx-2 mt-2 w-75 h-100 mb-4 ${darkMode ? "bg-secondary text-light" : ""}`}>
                 <div className="card-body">
