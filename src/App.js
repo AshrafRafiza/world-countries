@@ -10,6 +10,7 @@ import Country from './components/Country';
 import SearchIcon from '@mui/icons-material/Search';
 import Switch from '@mui/material/Switch';
 import TableViewIcon from '@mui/icons-material/TableView';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import CountryDetails from './components/CountryDetails';
 import { apiURL } from './components/util/api';
 import CountryTable from './components/CountryTable';
@@ -54,6 +55,20 @@ function App() {
           setError(error)
         })
     }
+  };
+
+  // refetch data when user click refresh icon due to search error
+  const refreshData = () => {
+    axios.get(`${apiURL}/all`)
+        .then(response => {
+            const countryData = response.data
+            setCountries(countryData)
+            setError(false)
+        })
+        .catch(error => {
+            console.log(error)
+            setError(error)
+        })
   };
 
   // select countries by region, if All will fetch from All API, other will fetch from region API
@@ -117,7 +132,7 @@ function App() {
               <div className="inputs d-flex align-items=center justify-content-between mx-2">
 
                 {/* search section */}
-                <div className="search-input">
+                <div className="search-input d-flex justify-content-between">
                   <div className="input-group p-2">
                       <span className="input-group-text" id="search-addon">
                         <SearchIcon />
@@ -131,6 +146,18 @@ function App() {
                         ref={countriesInputRef}
                         onChange={searchCountries} />
                   </div>
+                  <>
+                  {
+                    error ? 
+                    <div>
+                      <RefreshIcon 
+                        className={`refresh-icon ${darkMode ? "text-light" : ""} mt-3 rounded`}
+                        onClick={refreshData}
+                      />
+                    </div> 
+                    : <></>
+                  }
+                  </>
                 </div>
                 <div className="right-inputs d-flex justify-content-between mt-2">
 
