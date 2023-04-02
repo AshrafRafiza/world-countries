@@ -163,8 +163,8 @@ function App() {
                         </>
                       </div>
                     </div>
-                    <div className="col-12 col-md-4 mx-auto">
-                        <div className="d-sm-inline-flex d-flex align-item-center justify-content-between mt-2">
+                    <div className="col-12 col-md-4">
+                        <div className="d-flex justify-content-between d-md-flex justify-content-md-end mt-2">
                           {/* Select region section */}
                           <div className="select-region mx-2">
                             <select 
