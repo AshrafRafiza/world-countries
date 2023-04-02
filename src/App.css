@@ -26,6 +26,20 @@
   color: white;
 }
 
+.refresh-icon {
+  cursor: pointer;
+  animation: refresh 5s 2;
+  animation-direction: alternate;
+}
+
+@keyframes refresh {
+  0%   {background: #0000FF;}
+  25%  {background: white;}
+  50%  {background: #0000FF;}
+  75%  {background: white;}
+  100% {background: #0000FF;}
+}
+
 .switch-mode {
   gap: 12px;
   cursor: pointer;
