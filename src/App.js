@@ -129,68 +129,74 @@ function App() {
           path="/"
           element={
             <div className={`app-body vh-100 ${darkMode ? 'bg-dark' : ''}`}>
-              <div className="inputs d-flex align-items=center justify-content-between mx-2">
+              
+              {/* input section */}
+              <div className="container">
+                  <div className="row">
+                    <div className="col-12 col-md-8 mx-auto">
+                      {/* search section */}
+                      <div className="search-input d-flex justify-content-between">
+                        <div className="input-group p-2">
+                            <span className="input-group-text" id="search-addon">
+                              <SearchIcon />
+                            </span>
+                            <input 
+                              type="search" 
+                              className={`form-control ${darkMode ? "search-darkMode text-light" : ""}`}
+                              placeholder="Search country"
+                              aria-label="Search" 
+                              aria-describedby="search-addon"
+                              ref={countriesInputRef}
+                              onChange={searchCountries} />
+                        </div>
+                        <>
+                        {
+                          error ? 
+                          <div>
+                            <RefreshIcon 
+                              className={`refresh-icon ${darkMode ? "text-light" : ""} mt-3 rounded`}
+                              onClick={refreshData}
+                            />
+                          </div> 
+                          : <></>
+                        }
+                        </>
+                      </div>
+                    </div>
+                    <div className="col-12 col-md-4 mx-auto">
+                        <div className="d-sm-inline-flex d-flex align-item-center justify-content-between mt-2">
+                          {/* Select region section */}
+                          <div className="select-region mx-2">
+                            <select 
+                              className={`form-select ${darkMode ? "bg-dark text-light" : ""}`}
+                              ref={regionRef}
+                              onChange={selectRegion}
+                            >
+                                <option value="All">All</option>
+                                <option value="Africa">Africa</option>
+                                <option value="Americas">Americas</option>
+                                <option value="Asia">Asia</option>
+                                <option value="Europe">Europe</option>
+                                <option value="Oceania">Oceania</option>
+                            </select>
+                          </div>
 
-                {/* search section */}
-                <div className="search-input d-flex justify-content-between">
-                  <div className="input-group p-2">
-                      <span className="input-group-text" id="search-addon">
-                        <SearchIcon />
-                      </span>
-                      <input 
-                        type="search" 
-                        className={`form-control ${darkMode ? "search-darkMode text-light" : ""}`}
-                        placeholder="Search country"
-                        aria-label="Search" 
-                        aria-describedby="search-addon"
-                        ref={countriesInputRef}
-                        onChange={searchCountries} />
-                  </div>
-                  <>
-                  {
-                    error ? 
-                    <div>
-                      <RefreshIcon 
-                        className={`refresh-icon ${darkMode ? "text-light" : ""} mt-3 rounded`}
-                        onClick={refreshData}
-                      />
-                    </div> 
-                    : <></>
-                  }
-                  </>
-                </div>
-                <div className="right-inputs d-flex justify-content-between mt-2">
-
-                  {/* Select region section */}
-                  <div className="select-region mx-2">
-                    <select 
-                      className={`form-select ${darkMode ? "bg-dark text-light" : ""}`}
-                      ref={regionRef}
-                      onChange={selectRegion}
-                    >
-                        <option value="All">All</option>
-                        <option value="Africa">Africa</option>
-                        <option value="Americas">Americas</option>
-                        <option value="Asia">Asia</option>
-                        <option value="Europe">Europe</option>
-                        <option value="Oceania">Oceania</option>
-                    </select>
-                  </div>
-
-                  {/* Table view switch section */}
-                  <div className="change-view d-flex">
-                    <Switch {...label} 
-                      label="Table View" 
-                      checked={tableViewActive} 
-                      color={darkMode ? "warning" : "default"}
-                      onChange={tableViewChange}
-                      
-                    />
-                    <div className="mt-2">
-                      <TableViewIcon className={`${darkMode ? 'text-light' : ""}`} />
+                          {/* Table view switch section */}
+                          <div className="change-view d-flex">
+                            <Switch {...label} 
+                              label="Table View" 
+                              checked={tableViewActive} 
+                              color={darkMode ? "warning" : "default"}
+                              onChange={tableViewChange}
+                              
+                            />
+                            <div className="mt-2">
+                              <TableViewIcon className={`${darkMode ? 'text-light' : ""}`} />
+                            </div>
+                          </div>
+                        </div>
                     </div>
                   </div>
-                </div>
               </div>
               
 
